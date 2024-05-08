@@ -84,6 +84,17 @@
     background-color: rgba(0,0,0,1);
   }
 
+  td ul {
+    list-style-type: none; /* Removes the bullet points */
+    padding: 0; /* Removes padding, especially on the left */
+    margin: 0; /* Removes default margin */
+  }
+
+  td li {
+    margin: 0; /* Ensures no extra space between list items */
+    padding: 2px 0; /* Optional: Adds slight vertical padding for better readability */
+  }
+
 </style>
 </head>
 <body>
@@ -186,6 +197,14 @@
         <td></td>
       </tr>
       <tr>
+        <td>!Late</td>
+        <td>"Starting Soon" my ass, am I right?</td>
+        <td>Everyone</td>
+        <td></td>
+        <td></td>
+        <td>?</td>
+      </tr>
+      <tr>
         <td>!HumanMonies</td>
         <td>Tells you how many HumanMonies (fake channel points) you have.</td>
         <td>Everyone</td>
@@ -202,8 +221,23 @@
         <td>60</td>
       </tr>
       <tr>
-        <td>!Gray !Seagreen !Green !Lime !Yellow !Gold !Orange !Pink !Red !Purple !Indigo !Sapphire</td>
-        <td>Change Terry's color. The color resets after 5 minutes.</td>
+        <td>
+          <ul>
+            <li>!Gray</li>
+            <li>!Seagreen</li>
+            <li>!Green</li>
+            <li>!Lime</li>
+            <li>!Yellow</li>
+            <li>!Gold</li>
+            <li>!Orange</li>
+            <li>!Pink</li>
+            <li>!Red</li>
+            <li>!Purple</li>
+            <li>!Indigo</li>
+            <li>!Sapphire</li>
+          </ul>
+        </td>
+        <td>Change Terry's color. The color resets after 5 minutes of no color changes.</td>
         <td>Everyone</td>
         <td></td>
         <td>75</td>
@@ -243,7 +277,7 @@
         <td></td>
       </tr>
       <tr>
-        <td>!BlackCard !Whitecard</td>
+        <td><ul><li>!BlackCard</li><li>!Whitecard</li></ul></td>
         <td>Suggest a black card (question) or white card (answer) for Earliest Gang Against Humanity.</td>
         <td>Everyone</td>
         <td>Your card text</td>
@@ -331,7 +365,7 @@
         <td></td>
       </tr>
       <tr>
-        <td>!Monarch !King !Queen</td>
+        <td><ul><li>!Monarch</li><li>!King</li><li>!Queen</li></ul></td>
         <td>Declares you the monarch, king or queen of...something.</td>
         <td>Everyone</td>
         <td></td>
