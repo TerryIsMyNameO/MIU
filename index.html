@@ -25,6 +25,94 @@
     border-radius: 5px;
   }
 
+  .modToggle {
+    float: left;
+    display: flex;
+    align-items: center;
+  }
+
+  .modToggle label {
+  margin-right: 1em;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  th:nth-child(1) { width: 15%; }
+  th:nth-child(2) { width: 33%; }
+  th:nth-child(3) { width: 13%; }
+  th:nth-child(4) { width: 13%; }
+  th:nth-child(5) { width: 13%; }
+  th:nth-child(6) { width: 13%; }
+
+  .sortable::after {
+    content: "\25BC"; /* Down arrow */
+    color: #ccc; /* Gray color for inactive arrows */
+    float: right;
+    margin-left: 5px;
+  }
+
+  .sortable.sorted-asc::after {
+    content: "\25BC"; /* Down arrow */
+    color: #000; /* Black color for active arrow */
+  }
+
+  .sortable.sorted-desc::after {
+    content: "\25B2 "; /* Up arrow */
+    color: #000; /* Black color for active arrow */
+  }
+
+
   table {
     border-spacing: 0;
     width: 100%;
@@ -104,6 +192,15 @@
     <label for="SearchField">Search:</label>
     <input type="text" id="searchField" onkeyup="search()">
   </div>
+
+  <div class="modToggle">
+    <label class="switch">
+      <input type="checkbox" checked="true">
+      <span class="slider"></span>
+    </label>
+    <label>Show/Hide Mode Comamnds</label>
+  </div>
+
   <table id="CmndTable">
     <thead>
       <tr>
@@ -138,15 +235,15 @@
         <td>Everyone</td>
         <td></td>
         <td></td>
-        <td></td>
+        <td>5</td>
       </tr>
-      <tr>
-        <td>!SetGame</td>
+      <tr data-role="moderator">
+        <td>!Game</td>
         <td>Set the stream game/category.</td>
         <td>Moderator</td>
         <td>New category</td>
         <td></td>
-        <td></td>
+        <td>5</td>
       </tr>
       <tr>
         <td>!Title</td>
@@ -154,15 +251,29 @@
         <td>Everyone</td>
         <td></td>
         <td></td>
-        <td></td>
+        <td>5</td>
       </tr>
-      <tr>
-        <td>!SetTitle</td>
+      <tr data-role="moderator">
+        <td>!Title</td>
         <td>Set the stream title.</td>
         <td>Moderator</td>
         <td>New title</td>
         <td></td>
+        <td>5</td>
+      </tr>
+      <tr data-role="moderator">
+        <td>
+          <ul>
+            <li>!So</li>
+            <li>!Shoutout</li>
+            <li>/Shoutout</li>
+          </ul>
+        </td>
+        <td>Give a shoutout to a streamer (include Alejo pronouns)</td>
+        <td>Moderator</td>
+        <td>Target User</td>
         <td></td>
+        <td>120</td>
       </tr>
       <tr>
         <td>!Human</td>
@@ -268,7 +379,7 @@
         <td>100</td>
         <td>300</td>
       </tr>
-      <tr>
+      <tr data-role="moderator">
         <td>!ResetTopText</td>
         <td>Reset the text on top of stream to the default, removing any user-added message.</td>
         <td>Moderator</td>
@@ -300,7 +411,7 @@
         <td></td>
         <td></td>
       </tr>
-      <tr>
+      <tr data-role="moderator">
         <td>!TTSoff</td>
         <td>Takes away everyone's voice (If global tts is on, it turns it off)</td>
         <td>Moderator</td>
@@ -324,7 +435,7 @@
         <td></td>
         <td></td>
       </tr>
-      <tr>
+      <tr data-role="moderator">
         <td>!MusicPause</td>
         <td>Pause Nightbot AutoDJ.</td>
         <td>Moderator</td>
@@ -332,7 +443,7 @@
         <td></td>
         <td></td>
       </tr>
-      <tr>
+      <tr data-role="moderator">
         <td>!MusicPlay</td>
         <td>Resume Playing Nightbot AutoDJ (if the program is currently open).</td>
         <td>Moderator</td>
@@ -340,7 +451,7 @@
         <td></td>
         <td></td>
       </tr>
-      <tr>
+      <tr data-role="moderator">
         <td>!MusicVolumeUp</td>
         <td>Increase Nightbot AutoDJ's volume by 10.</td>
         <td>Moderator</td>
@@ -348,7 +459,7 @@
         <td></td>
         <td></td>
       </tr>
-      <tr>
+      <tr data-role="moderator">
         <td>!MusicVolumeDown</td>
         <td>Decrease Nightbot AutoDJ's volume by 10.</td>
         <td>Moderator</td>
@@ -356,7 +467,7 @@
         <td></td>
         <td></td>
       </tr>
-      <tr>
+      <tr data-role="moderator">
         <td>!MusicVolumeReset</td>
         <td>Resets Nightbot AutoDJ's volume to 50.</td>
         <td>Moderator</td>
@@ -368,7 +479,7 @@
         <td>!Awards</td>
         <td>Tells you your or another user's awards.</td>
         <td>Everyone</td>
-        <td>username [optional]</td>
+        <td>Target User [optional]</td>
         <td></td>
         <td></td>
       </tr>
@@ -423,56 +534,76 @@ function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("CmndTable");
   switching = true;
-  //Set the sorting direction to ascending:
   dir = "asc"; 
-  /*Make a loop that will continue until
-  no switching has been done:*/
+
+  // Reset all column headers
+  var headers = table.getElementsByTagName("TH");
+  for (i = 0; i < headers.length; i++) {
+    headers[i].classList.remove("sorted-asc", "sorted-desc");
+  }
+
   while (switching) {
-    //start by saying: no switching is done:
     switching = false;
     rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
+
     for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
       shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
+      
+      // Handle numeric sorting for the Cooldown and Cost columns
+      if (n === 4 || n === 5) { // index 4 and 5 for cost and cooldown
+        var xValue = x.textContent.trim() === "" ? 0 : (x.textContent.trim() === "?" ? Infinity : parseInt(x.textContent.trim(), 10));
+        var yValue = y.textContent.trim() === "" ? 0 : (y.textContent.trim() === "?" ? Infinity : parseInt(y.textContent.trim(), 10));
+        
+        if (dir == "asc") {
+          if (xValue > yValue) {
+            shouldSwitch = true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (xValue < yValue) {
+            shouldSwitch = true;
+            break;
+          }
         }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
+      } else {
+        var xContent = x.querySelector("li") ? x.querySelector("li").textContent : x.textContent;
+        var yContent = y.querySelector("li") ? y.querySelector("li").textContent : y.textContent;
+        
+        if (dir == "asc") {
+          if (xContent.toLowerCase() > yContent.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (xContent.toLowerCase() < yContent.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
         }
       }
     }
     if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
-      //Each time a switch is done, increase this count by 1:
       switchcount ++;      
     } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
       if (switchcount == 0 && dir == "asc") {
         dir = "desc";
         switching = true;
       }
     }
   }
+  // Set the appropriate class for the sorted column
+  if (dir === "asc") {
+    headers[n].classList.add("sorted-asc");
+  } else {
+    headers[n].classList.add("sorted-desc");
+  }
 }
+
+
 
 function search() {
   var input, filter, table, tr, tdCommand, tdDetails, i;
@@ -495,10 +626,26 @@ function search() {
   }
 }
 
-// Get the scroll button
+function toggleModCommands() {
+  var checkBox = document.querySelector(".modToggle input");
+  var table = document.getElementById("CmndTable");
+  var tr = table.getElementsByTagName("tr");
+  for (var i = 1; i < tr.length; i++) {
+    if (tr[i].getAttribute("data-role") === "moderator") {
+      if (checkBox.checked) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+document.querySelector(".modToggle input").addEventListener("change", toggleModCommands);
+toggleModCommands();
+
 let mybutton = document.getElementById("scrollTop");
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
@@ -509,12 +656,13 @@ function scrollFunction() {
   }
 }
 
-// When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
 </script>
+
+
 
 </body>
 </html>
