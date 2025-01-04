@@ -88,28 +88,28 @@
     transform: translateX(26px);
   }
 
-  th:nth-child(1) { width: 15%; }
-  th:nth-child(2) { width: 33%; }
+  th:nth-child(1) { width: 16%; }
+  th:nth-child(2) { width: 31%; }
   th:nth-child(3) { width: 13%; }
-  th:nth-child(4) { width: 13%; }
+  th:nth-child(4) { width: 16%; }
   th:nth-child(5) { width: 13%; }
   th:nth-child(6) { width: 13%; }
 
   .sortable::after {
-    content: "\25BC"; /* Down arrow */
-    color: #ccc; /* Gray color for inactive arrows */
+    content: "\25BC"; // Down arrow
+    color: #ccc;
     float: right;
     margin-left: 5px;
   }
 
   .sortable.sorted-asc::after {
-    content: "\25BC"; /* Down arrow */
-    color: #000; /* Black color for active arrow */
+    content: "\25BC"; // Down arrow
+    color: #000;
   }
 
   .sortable.sorted-desc::after {
-    content: "\25B2 "; /* Up arrow */
-    color: #000; /* Black color for active arrow */
+    content: "\25B2 "; // Up arrow
+    color: #000;
   }
 
 
@@ -173,14 +173,13 @@
   }
 
   td ul {
-    list-style-type: none; /* Removes the bullet points */
-    padding: 0; /* Removes padding, especially on the left */
-    margin: 0; /* Removes default margin */
-  }
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 
   td li {
-    margin: 0; /* Ensures no extra space between list items */
-    padding: 2px 0; /* Optional: Adds slight vertical padding for better readability */
+    margin: 0;
+    padding: .2em 0;
   }
 
 </style>
@@ -198,7 +197,7 @@
       <input type="checkbox" checked="true">
       <span class="slider"></span>
     </label>
-    <label>Show/Hide Mode Comamnds</label>
+    <label>Show Mod Comamnds</label>
   </div>
 
   <table id="CmndTable">
@@ -263,7 +262,6 @@
           <ul>
             <li>!So</li>
             <li>!Shoutout</li>
-            <li>/Shoutout</li>
           </ul>
         </td>
         <td>Give a shoutout to a streamer (include Alejo pronouns)</td>
@@ -306,7 +304,7 @@
       </tr>
       <tr>
         <td>!Late</td>
-        <td>"Starting Soon" my ass, am I right?</td>
+        <td>For when you want to smash the screen because you stream is taking too long to start.</td>
         <td>Everyone</td>
         <td></td>
         <td></td>
@@ -332,7 +330,7 @@
         <td>!Slots</td>
         <td>Bet 10 or more HumanMonies on a game of slots.</td>
         <td>Everyone</td>
-        <td>Bet [optional]</td>
+        <td>Bet (optional)</td>
         <td>10+</td>
         <td>10 (per person)</td>
       </tr>
@@ -347,33 +345,15 @@
       <tr>
         <td>
           <ul>
-            <li>!Gray</li>
-            <li>!Seagreen</li>
-            <li>!Green</li>
-            <li>!Lime</li>
-            <li>!Yellow</li>
-            <li>!Gold</li>
-            <li>!Orange</li>
-            <li>!Pink</li>
-            <li>!Red</li>
-            <li>!Purple</li>
-            <li>!Indigo</li>
-            <li>!Sapphire</li>
+            <li>!ColorChange</li>
+            <li>!ChangeColor</li>
           </ul>
         </td>
-        <td>Change Terry's color. The color resets after 5 minutes of no color changes.</td>
+        <td>Change Terry's color. You can pick a color, or leave the arguments blank for a random one. The color resets after 5 minutes.</td>
         <td>Everyone</td>
-        <td></td>
+        <td>Color (optional— Gray, Seagreen, Green, Lime, Yellow, Gold, Orange, Pink, Red, Purple, Indigo, Sapphire)</td>
         <td>75</td>
         <td>60</td>
-      </tr>
-      <tr>
-        <td>!Color</td>
-        <td>Gives you a list of colors you can make Terry turn.</td>
-        <td>Everyone</td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
       <tr>
         <td>!TopText</td>
@@ -392,6 +372,7 @@
         <td></td>
         <td></td>
       </tr>
+      <!--
       <tr>
         <td>!Deck</td>
         <td>Gives you a link to the Earliest Gang Against Humanity deck.</td>
@@ -408,17 +389,18 @@
         <td></td>
         <td>5</td>
       </tr>
+      -->
       <tr>
         <td>!Voice</td>
         <td>Tells you your current voice and gives you your voice options, or changes your voice if you include an option after the command.</td>
         <td>Everyone</td>
-        <td>Voice Option [Optional]</td>
+        <td>Voice Option (Optional— David, Zira, Default)</td>
         <td></td>
         <td></td>
       </tr>
       <tr data-role="moderator">
         <td>!TTSoff</td>
-        <td>Takes away everyone's voice (If global tts is on, it turns it off)</td>
+        <td>If global tts is on, turn it off</td>
         <td>Moderator</td>
         <td></td>
         <td></td>
@@ -481,15 +463,25 @@
         <td></td>
       </tr>
       <tr data-role="moderator">
-        <td>!StartPoll</td>
+        <td>
+          <ul>
+            <li>!PollStart</li>
+            <li>!StartPoll</li>
+          </ul>
+        </td>
         <td>Creates a poll with up to 9 options and displays it on screen. The title and options should be seperated by a pipe character (|)</td>
         <td>Moderator</td>
-        <td>Title | Option1 | Option2 | additional options [optional]</td>
+        <td>Title | Option1 | Option2 | Option 3, etc.</td>
         <td></td>
         <td>15</td>
       </tr>
       <tr data-role="moderator">
-        <td>!EndPoll</td>
+        <td>
+          <ul>
+            <li>!PollEnd</li>
+            <li>!EndPoll</li>
+          </ul>
+        </td>
         <td>Ends the ongoing poll</td>
         <td>Moderator</td>
         <td></td>
@@ -497,7 +489,12 @@
         <td></td>
       </tr>
       <tr data-role="moderator">
-        <td>!HidePoll</td>
+        <td>
+          <ul>
+            <li>!PollHide</li>
+            <li>!HidePoll</li>
+          </ul>
+        </td>
         <td>Hides the poll overlay. Also ends the poll if it's still active.</td>
         <td>Moderator</td>
         <td></td>
@@ -512,11 +509,71 @@
         <td></td>
         <td></td>
       </tr>
+      <tr data-role="moderator">
+        <td>!Timer</td>
+        <td>Shows the timer widget (beginning at 0 if no starting time is specified) and starts the timer.</td>
+        <td>Moderator</td>
+        <td>Starting Time (Optional— HH:MM:SS)</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr data-role="moderator">
+        <td>
+          <ul>
+            <li>!TimerPause</li>
+            <li>!PauseTimer</li>
+          </ul>
+        </td>
+        <td>Pauses the timer widget.</td>
+        <td>Moderator</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr data-role="moderator">
+        <td>
+          <ul>
+            <li>!TimerStart</li>
+            <li>!StartTimer</li>
+          </ul>
+        </td>
+        <td>Starts/unpauses the timer widget.</td>
+        <td>Moderator</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr data-role="moderator">
+        <td>
+          <ul>
+            <li>!TimerReset</li>
+            <li>!ResetTimer</li>
+          </ul>
+        </td>
+        <td>Resets the timer to 0 (or the specified tme) and leaves it paused.</td>
+        <td>Moderator</td>
+        <td>Starting Time (Optional— HH:MM:SS)</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr data-role="moderator">
+        <td>
+          <ul>
+            <li>!TimerHide</li>
+            <li>!HideTimer</li>
+          </ul>
+        </td>
+        <td>Hides the timer widget.</td>
+        <td>Moderator</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
       <tr>
         <td>!Awards</td>
         <td>Tells you your or another user's awards.</td>
         <td>Everyone</td>
-        <td>Target User [optional]</td>
+        <td>Target User (optional)</td>
         <td></td>
         <td></td>
       </tr>
